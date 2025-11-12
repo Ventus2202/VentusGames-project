@@ -1,0 +1,7 @@
+{
+  "name": "ventus-games",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

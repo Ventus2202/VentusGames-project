@@ -1,0 +1,149 @@
+.social-ladder-lobby-content {
+  --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+}
+
+.lobby-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+}
+
+.lobby-header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.lobby-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.lobby-header p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Players Card */
+.players-card {
+  --background: rgba(44, 57, 75, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.players-card ion-card-header {
+  --background: rgba(60, 76, 97, 0.8);
+  border-radius: 16px 16px 0 0;
+}
+
+.players-card ion-card-title {
+  color: white;
+  font-weight: 700;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #F4C542 0%, #E6B83A 100%);
+  border-radius: 50%;
+  font-weight: 700;
+  color: #1a2332;
+  font-size: 16px;
+}
+
+.player-name {
+  font-weight: 600;
+  color: white;
+  font-size: 18px;
+}
+
+/* Rules Card */
+.rules-card {
+  --background: rgba(44, 57, 75, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.rules-card ion-card-header {
+  --background: rgba(60, 76, 97, 0.8);
+  border-radius: 16px 16px 0 0;
+}
+
+.rules-card ion-card-title {
+  color: white;
+  font-weight: 700;
+}
+
+.rules-list {
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+}
+
+.rules-list li {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 0 20px 0;
+}
+
+.start-game-button {
+  --background: #F4C542;
+  --background-hover: #E6B83A;
+  --background-activated: #D4A932;
+  --color: #1a2332;
+  --border-radius: 12px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  height: 56px;
+}
+
+.start-game-button:disabled {
+  --background: rgba(60, 76, 97, 0.5);
+  --color: rgba(255, 255, 255, 0.4);
+}
+
+.warning-text {
+  text-align: center;
+  color: rgba(255, 100, 100, 1);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .lobby-container {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .lobby-header h1 {
+    font-size: 24px;
+  }
+
+  .player-name {
+    font-size: 16px;
+  }
+}

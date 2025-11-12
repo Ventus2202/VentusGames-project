@@ -1,0 +1,71 @@
+.loading-content,
+.waiting-content,
+.ranking-turn-content {
+  --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+}
+
+.loading-container,
+.waiting-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 24px;
+  padding: 20px;
+  text-align: center;
+}
+
+.loading-container p,
+.waiting-container p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  margin: 0;
+}
+
+.waiting-icon {
+  font-size: 64px;
+  animation: bounce 1s infinite;
+}
+
+.waiting-container h2 {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Turn Header */
+.turn-header {
+  position: sticky;
+  top: 0;
+  background: rgba(60, 76, 97, 0.95);
+  padding: 16px;
+  border-bottom: 2px solid #F4C542;
+  z-index: 10;
+}
+
+.turn-counter {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.turn-name {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
