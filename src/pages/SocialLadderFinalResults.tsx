@@ -2,13 +2,15 @@ import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonButton, IonCar
 import { home, refresh } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useGame } from '../context/GameContext';
+import { usePlayers } from '../hooks/usePlayers';
+import { useSocialLadderGame } from '../hooks/useSocialLadderGame';
 import useLocalStorage, { GameSession } from '../hooks/useLocalStorage';
 import './SocialLadderFinalResults.css';
 
 const SocialLadderFinalResults: React.FC = () => {
   const history = useHistory();
-  const { socialLadderState } = useGame();
+  const { players } = usePlayers();
+  const { socialLadderState, resetSocialLadderState } = useSocialLadderGame(players);
   const { saveGameSession } = useLocalStorage();
 
   // Salva la partita quando la pagina si monta
@@ -33,7 +35,7 @@ const SocialLadderFinalResults: React.FC = () => {
 
       saveGameSession(session);
     }
-  }, [socialLadderState]);
+  }, [socialLadderState, saveGameSession]);
 
   if (!socialLadderState) {
     return null;
@@ -52,11 +54,13 @@ const SocialLadderFinalResults: React.FC = () => {
   const thirdPlace = finalRanking[2];
 
   const handlePlayAgain = () => {
-    history.push('/');
+    resetSocialLadderState();
+    history.push('/social-ladder-lobby');
   };
 
-  const handleHome = () => {
-    history.push('/');
+  const handleBackToMenu = () => {
+    resetSocialLadderState();
+    history.push('/games');
   };
 
   return (
@@ -153,9 +157,9 @@ const SocialLadderFinalResults: React.FC = () => {
               <IonIcon icon={refresh} slot="start" />
               Gioca Ancora
             </IonButton>
-            <IonButton expand="block" fill="outline" className="home-button" onClick={handleHome}>
+            <IonButton expand="block" fill="outline" className="back-to-menu-button" onClick={handleBackToMenu}>
               <IonIcon icon={home} slot="start" />
-              Torna alla Home
+              Torna al menu
             </IonButton>
           </div>
         </div>

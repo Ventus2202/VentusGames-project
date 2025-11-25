@@ -1,7 +1,8 @@
 import { IonContent, IonPage } from '@ionic/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useGame } from '../context/GameContext';
+import { usePlayers } from '../hooks/usePlayers';
+import { useSocialLadderGame } from '../hooks/useSocialLadderGame';
 import useSocialLadderQuestions from '../hooks/useSocialLadderQuestions';
 import ReadyScreen from '../components/ReadyScreen';
 import RankingSelector from '../components/RankingSelector';
@@ -10,13 +11,24 @@ import SocialLadderFinalResults from './SocialLadderFinalResults';
 import './SocialLadderGame.css';
 
 const SocialLadderGame: React.FC = () => {
-  const { socialLadderState, setPlayerSelfPosition, setMasterRanking, completeRound, startNextRound, endGame, totalRounds } = useGame();
+  const { players, totalRounds } = usePlayers();
+  const { socialLadderState, initializeGame, setPlayerSelfPosition, setMasterRanking, completeRound, startNextRound, endGame } = useSocialLadderGame(players);
   const { questions } = useSocialLadderQuestions();
   const history = useHistory();
   
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [showReadyScreen, setShowReadyScreen] = useState(true);
   const [allPlayersVoted, setAllPlayersVoted] = useState(false);
+  const initRef = useRef(false);
+
+  // Inizializza il gioco al mount se non esiste uno stato
+  useEffect(() => {
+    if (!socialLadderState && questions.length > 0 && !initRef.current) {
+      initRef.current = true;
+      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+      initializeGame(randomQuestion);
+    }
+  }, [socialLadderState, questions, initializeGame]);
 
   // Reset stato quando inizia un nuovo round
   useEffect(() => {
@@ -27,15 +39,16 @@ const SocialLadderGame: React.FC = () => {
     }
   }, [socialLadderState?.gameState, socialLadderState?.currentRound]);
 
-  // Redirect alla lobby se non c'è stato
+  // Redirect alla lobby se non c'è stato (dopo un po')
   useEffect(() => {
-    if (!socialLadderState) {
-      const timeout = setTimeout(() => {
+    if (!socialLadderState && questions.length > 0) {
+       // Se non c'è stato e le domande sono caricate, l'init fallisce (es. <3 giocatori)
+       const timeout = setTimeout(() => {
         history.push('/social-ladder-lobby');
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timeout);
     }
-  }, [socialLadderState, history]);
+  }, [socialLadderState, questions, history]);
 
   if (!socialLadderState) {
     return (
@@ -73,6 +86,9 @@ const SocialLadderGame: React.FC = () => {
     return (
       <SocialLadderResults
         roundData={currentRound}
+        players={socialLadderState.players}
+        totalScores={socialLadderState.totalScores}
+        totalRounds={totalRounds}
         onNextRound={isLastRound ? undefined : handleNextRound}
         onEndGame={handleEndGame}
       />

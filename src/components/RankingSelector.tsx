@@ -1,7 +1,7 @@
 import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonButton, IonIcon, IonCard, IonCardContent } from '@ionic/react';
 import { checkmark } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
-import { Player } from '../context/GameContext';
+import { Player } from '../types/Player';
 import './RankingSelector.css';
 
 export interface RankItem extends Player {
@@ -30,6 +30,9 @@ const RankingSelector: React.FC<RankingSelectorProps> = ({
   const [rankingList, setRankingList] = useState<RankItem[]>([]);
   const [draggedItem, setDraggedItem] = useState<RankItem | null>(null);
   const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number>(0);
+  const [dragOffset, setDragOffset] = useState<number>(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
 
   useEffect(() => {
     if (isMaster) {
@@ -58,6 +61,41 @@ const RankingSelector: React.FC<RankingSelectorProps> = ({
 
     setRankingList(newList);
     setDraggedItem(null);
+  };
+
+  // Touch handlers per mobile drag and drop
+  const handleTouchStart = (e: React.TouchEvent, item: RankItem) => {
+    setTouchStartY(e.touches[0].clientY);
+    setDraggedItem(item);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !draggedItem) return;
+    const touchCurrentY = e.touches[0].clientY;
+    setDragOffset(touchCurrentY - touchStartY);
+  };
+
+  const handleTouchEnd = (targetItem: RankItem) => {
+    if (!draggedItem || draggedItem.id === targetItem.id || dragOffset === 0) {
+      setDraggedItem(null);
+      setTouchStartY(0);
+      setDragOffset(0);
+      setIsDragging(false);
+      return;
+    }
+
+    const draggedIndex = rankingList.findIndex(p => p.id === draggedItem.id);
+    const targetIndex = rankingList.findIndex(p => p.id === targetItem.id);
+
+    const newList = [...rankingList];
+    [newList[draggedIndex], newList[targetIndex]] = [newList[targetIndex], newList[draggedIndex]];
+
+    setRankingList(newList);
+    setDraggedItem(null);
+    setTouchStartY(0);
+    setDragOffset(0);
+    setIsDragging(false);
   };
 
   const moveUp = (index: number) => {
@@ -120,11 +158,18 @@ const RankingSelector: React.FC<RankingSelectorProps> = ({
                   {rankingList.map((player, index) => (
                     <div
                       key={player.id}
-                      className="ranking-item"
+                      className={`ranking-item ${draggedItem?.id === player.id ? 'dragging' : ''}`}
                       draggable
                       onDragStart={() => handleDragStart(player)}
                       onDragOver={handleDragOver}
                       onDrop={() => handleDrop(player)}
+                      onTouchStart={(e) => handleTouchStart(e, player)}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={() => handleTouchEnd(player)}
+                      style={{
+                        transform: draggedItem?.id === player.id && isDragging ? `translateY(${dragOffset}px)` : 'translateY(0)',
+                        opacity: draggedItem?.id === player.id && isDragging ? 0.7 : 1,
+                      }}
                     >
                       <div className="position-badge">{index + 1}</div>
                       <div className="player-info">

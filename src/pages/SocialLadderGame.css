@@ -12,7 +12,7 @@
   justify-content: center;
   height: 100%;
   gap: 24px;
-  padding: 20px;
+  padding: 24px 20px;
   text-align: center;
 }
 
@@ -52,6 +52,7 @@
   padding: 16px;
   border-bottom: 2px solid #F4C542;
   z-index: 10;
+  backdrop-filter: blur(10px);
 }
 
 .turn-counter {

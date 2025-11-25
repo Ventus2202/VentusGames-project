@@ -1,5 +1,7 @@
 .home-content {
   --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+  --padding-top: max(20px, env(safe-area-inset-top));
+  --padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
 
 .home-container {
@@ -8,13 +10,13 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: max(32px, env(safe-area-inset-top) + 12px) 20px max(32px, env(safe-area-inset-bottom) + 12px);
 }
 
 /* Logo Section */
 .logo-container {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .logo {

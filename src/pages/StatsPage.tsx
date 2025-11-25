@@ -1,30 +1,27 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
-import { useGame } from '../context/GameContext';
+import { usePlayers } from '../hooks/usePlayers';
+import { useSocialLadderGame } from '../hooks/useSocialLadderGame';
 import './Tab2.css';
 
 const Tab2: React.FC = () => {
-  const { players, socialLadderState } = useGame();
+  const { players } = usePlayers();
+  const { socialLadderState } = useSocialLadderGame(players);
 
   const totalPlayers = players.filter(p => p.name.trim() !== '').length;
   const validPlayers = players.filter(p => p.name.trim() !== '');
 
   // Calcola statistiche dal gioco attuale
-  const getRoundCount = () => socialLadderState?.rounds.length || 0;
-  const getTotalScores = () => {
-    if (!socialLadderState) return {};
-    return socialLadderState.totalScores;
-  };
-  const getTopPlayer = () => {
-    const scores = getTotalScores();
-    if (Object.keys(scores).length === 0) return null;
-    const topId = Object.keys(scores).reduce((a, b) =>
-      (scores[parseInt(b)] || 0) > (scores[parseInt(a)] || 0) ? b : a
-    );
-    return { id: parseInt(topId), score: scores[parseInt(topId)] || 0 };
-  };
+  const roundCount = socialLadderState?.rounds.length || 0;
+  const totalScores = socialLadderState?.totalScores || {};
 
-  const topPlayer = getTopPlayer();
-  const totalScoresSum = Object.values(getTotalScores()).reduce((a, b) => a + b, 0);
+  const topPlayer = Object.keys(totalScores).length > 0 
+    ? Object.entries(totalScores)
+        .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)[0]
+    : null;
+
+  const topPlayerName = topPlayer ? players.find(p => p.id === parseInt(topPlayer[0]))?.name : 'N/A';
+
+  const totalScoresSum = Object.values(totalScores).reduce((a: number, b: number) => a + b, 0);
 
   return (
     <IonPage>
@@ -53,7 +50,7 @@ const Tab2: React.FC = () => {
               </div>
               <div className="stat-row">
                 <span className="stat-label">Round Giocati:</span>
-                <span className="stat-value">{getRoundCount()}</span>
+                <span className="stat-value">{roundCount}</span>
               </div>
               <div className="stat-row">
                 <span className="stat-label">Punti Totali Assegnati:</span>
@@ -71,16 +68,16 @@ const Tab2: React.FC = () => {
               <IonCardContent>
                 <div className="top-player-info">
                   <div className="top-player-name">
-                    {players.find(p => p.id === topPlayer.id)?.name || 'Sconosciuto'}
+                    {topPlayerName}
                   </div>
-                  <div className="top-player-score">{topPlayer.score} VP</div>
+                  <div className="top-player-score">{topPlayer[1]} VP</div>
                 </div>
               </IonCardContent>
             </IonCard>
           )}
 
           {/* Classifica Giocatori */}
-          {validPlayers.length > 0 && (
+          {validPlayers.length > 0 && socialLadderState && (
             <IonCard className="ranking-card">
               <IonCardHeader>
                 <IonCardTitle>📋 Classifica Giocatori</IonCardTitle>
@@ -90,7 +87,7 @@ const Tab2: React.FC = () => {
                   {validPlayers
                     .map(p => ({
                       ...p,
-                      score: getTotalScores()[p.id] || 0,
+                      score: totalScores[p.id] || 0,
                     }))
                     .sort((a, b) => b.score - a.score)
                     .map((player, index) => (
@@ -106,7 +103,7 @@ const Tab2: React.FC = () => {
           )}
 
           {/* Info vuota */}
-          {validPlayers.length === 0 && (
+          {!socialLadderState && (
             <IonCard className="empty-card">
               <IonCardContent>
                 <p className="empty-message">

@@ -1,18 +1,20 @@
 .ranking-selector-content {
   --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+  --padding-top: max(20px, env(safe-area-inset-top));
+  --padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
 
 .ranking-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 20px;
+  gap: 28px;
+  padding: max(24px, env(safe-area-inset-top) + 4px) 20px max(24px, env(safe-area-inset-bottom) + 4px);
 }
 
 /* Question Section */
 .question-section {
   text-align: center;
-  padding: 20px 0;
+  padding: 8px 0 16px;
 }
 
 .question-text {
@@ -70,6 +72,13 @@
   opacity: 0.7;
   background: rgba(244, 197, 66, 0.2);
   border-color: rgba(244, 197, 66, 0.6);
+}
+
+.ranking-item.dragging {
+  background: rgba(244, 197, 66, 0.25);
+  border-color: rgba(244, 197, 66, 0.8);
+  box-shadow: 0 8px 24px rgba(244, 197, 66, 0.3);
+  transition: transform 0.1s ease;
 }
 
 /* Position Badge */
@@ -205,7 +214,7 @@
 
 /* Confirm Section */
 .confirm-section {
-  padding: 16px 0;
+  padding: 20px 0 8px;
 }
 
 .confirm-button {
@@ -229,8 +238,8 @@
 /* Responsive */
 @media (max-width: 480px) {
   .ranking-container {
-    gap: 16px;
-    padding: 16px;
+    gap: 20px;
+    padding: max(20px, env(safe-area-inset-top) + 4px) 16px max(20px, env(safe-area-inset-bottom) + 4px);
   }
 
   .question-text {

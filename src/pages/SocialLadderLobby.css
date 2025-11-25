@@ -1,39 +1,18 @@
+/* Unique styles for Social Ladder Lobby */
+
 .social-ladder-lobby-content {
-  --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+  /* No special background, LobbyCommon.css handles it */
+  /* padding overrides if needed */
+  --padding-top: max(20px, env(safe-area-inset-top)); /* Slightly different from default */
+  --padding-bottom: max(20px, env(safe-area-inset-bottom)); /* Slightly different from default */
 }
 
 .lobby-container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 20px;
+  gap: 28px; /* Override default gap from LobbyCommon.css if needed */
+  padding: max(28px, env(safe-area-inset-top) + 8px) 20px max(28px, env(safe-area-inset-bottom) + 8px); /* Different padding */
 }
 
-.lobby-header {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.lobby-header h1 {
-  font-size: 28px;
-  font-weight: 700;
-  color: white;
-  margin: 0 0 8px 0;
-}
-
-.lobby-header p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 16px;
-  margin: 0;
-}
-
-/* Players Card */
-.players-card {
-  --background: rgba(44, 57, 75, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
+/* Players Card - specific header/title styling */
 .players-card ion-card-header {
   --background: rgba(60, 76, 97, 0.8);
   border-radius: 16px 16px 0 0;
@@ -44,38 +23,17 @@
   font-weight: 700;
 }
 
-.player-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 .player-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, #F4C542 0%, #E6B83A 100%);
-  border-radius: 50%;
-  font-weight: 700;
-  color: #1a2332;
-  font-size: 16px;
+  width: 36px; /* Override default */
+  height: 36px; /* Override default */
+  font-size: 16px; /* Override default */
 }
 
 .player-name {
-  font-weight: 600;
-  color: white;
-  font-size: 18px;
+  font-size: 18px; /* Override default */
 }
 
-/* Rules Card */
-.rules-card {
-  --background: rgba(44, 57, 75, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
+/* Rules Card - specific header/title styling */
 .rules-card ion-card-header {
   --background: rgba(60, 76, 97, 0.8);
   border-radius: 16px 16px 0 0;
@@ -87,7 +45,7 @@
 }
 
 .rules-list {
-  list-style: decimal;
+  list-style: decimal; /* Override default */
   padding-left: 20px;
   margin: 0;
   color: rgba(255, 255, 255, 0.85);
@@ -101,42 +59,20 @@
 
 /* Button Container */
 .button-container {
-  display: flex;
-  flex-direction: column;
   gap: 12px;
-  padding: 0 0 20px 0;
-}
-
-.start-game-button {
-  --background: #F4C542;
-  --background-hover: #E6B83A;
-  --background-activated: #D4A932;
-  --color: #1a2332;
-  --border-radius: 12px;
-  --padding-top: 16px;
-  --padding-bottom: 16px;
-  font-size: 18px;
-  font-weight: 700;
-  height: 56px;
-}
-
-.start-game-button:disabled {
-  --background: rgba(60, 76, 97, 0.5);
-  --color: rgba(255, 255, 255, 0.4);
+  padding: 0 0 8px;
 }
 
 .warning-text {
-  text-align: center;
-  color: rgba(255, 100, 100, 1);
-  font-size: 14px;
+  color: rgba(255, 100, 100, 1); /* Override default */
   margin: 0;
 }
 
 /* Responsive */
 @media (max-width: 480px) {
   .lobby-container {
-    gap: 16px;
-    padding: 16px;
+    gap: 20px;
+    padding: max(24px, env(safe-area-inset-top) + 4px) 16px max(24px, env(safe-area-inset-bottom) + 4px); /* Different padding */
   }
 
   .lobby-header h1 {

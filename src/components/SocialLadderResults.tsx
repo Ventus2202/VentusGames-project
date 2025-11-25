@@ -1,29 +1,34 @@
 import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonButton, IonCard, IonCardContent, IonIcon } from '@ionic/react';
-import { checkmark, close } from 'ionicons/icons';
+import { checkmark } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
-import { useGame } from '../context/GameContext';
+import { Player } from '../types/Player';
 import { SocialLadderRound } from '../types/SocialLadder';
 import './SocialLadderResults.css';
 
 interface SocialLadderResultsProps {
   roundData: SocialLadderRound;
+  players: Player[];
+  totalScores: { [key: number]: number };
+  totalRounds: number;
   onNextRound?: () => void;
   onEndGame?: () => void;
 }
 
-const SocialLadderResults: React.FC<SocialLadderResultsProps> = ({ roundData, onNextRound, onEndGame }) => {
-  const { socialLadderState, totalRounds } = useGame();
+const SocialLadderResults: React.FC<SocialLadderResultsProps> = ({
+  roundData,
+  players,
+  totalScores,
+  totalRounds,
+  onNextRound,
+  onEndGame,
+}) => {
   const history = useHistory();
-
-  if (!socialLadderState) {
-    return null;
-  }
 
   // Crea la classifica del Master (ordinata)
   const masterRanking = roundData.masterPositions
     .sort((a, b) => a.position - b.position)
     .map(mp => {
-      const player = socialLadderState.players.find(p => p.id === mp.playerId);
+      const player = players.find(p => p.id === mp.playerId);
       const playerSelfPosition = roundData.playerSelfPositions[mp.playerId];
       const correct = playerSelfPosition === mp.position;
       const points = roundData.roundScores[mp.playerId] || 0;
@@ -44,9 +49,8 @@ const SocialLadderResults: React.FC<SocialLadderResultsProps> = ({ roundData, on
   // Controlla se il Master ha guadagnato il bonus (2 punti)
   const masterBonus = roundData.roundScores[roundData.masterId] === 2;
 
-  const masterName = socialLadderState.players.find(p => p.id === roundData.masterId)?.name;
-  const isLastRound = socialLadderState && roundData.roundNumber >= totalRounds;
-  const canContinue = socialLadderState && roundData.roundNumber < totalRounds;
+  const masterName = players.find(p => p.id === roundData.masterId)?.name;
+  const canContinue = roundData.roundNumber < totalRounds;
 
   const handleNextRound = () => {
     if (onNextRound) {
@@ -123,10 +127,10 @@ const SocialLadderResults: React.FC<SocialLadderResultsProps> = ({ roundData, on
             <IonCardContent>
               <h3>Punteggi Totali</h3>
               <div className="totals-list">
-                {socialLadderState.players
+                {players
                   .map(p => ({
                     ...p,
-                    totalScore: socialLadderState.totalScores[p.id] || 0,
+                    totalScore: totalScores[p.id] || 0,
                   }))
                   .sort((a, b) => b.totalScore - a.totalScore)
                   .map((player, index) => (

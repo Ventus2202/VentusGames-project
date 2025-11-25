@@ -3,25 +3,25 @@ import { useState, useEffect } from 'react';
 import { IonContent, IonPage, IonButton, IonInput, IonIcon } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { trash } from 'ionicons/icons';
-import { useGame } from '../context/GameContext';
+import { usePlayers } from '../hooks/usePlayers';
 import logo from '../assets/logo.png';
 import './Home.css';
 
 const Home: React.FC = () => {
-  const { players, updatePlayerName, addPlayer, removePlayer, resetSocialLadderState } = useGame();
+  const { players, updatePlayerName, addPlayer, removePlayer } = usePlayers();
   const [error, setError] = useState<string | null>(null);
   const history = useHistory();
 
   // Resetta lo stato del gioco quando si torna alla home
   useEffect(() => {
-    resetSocialLadderState();
-  }, [resetSocialLadderState]);
+    sessionStorage.removeItem('socialLadderState');
+  }, []);
 
   const handlePlayerCountChange = (delta: number) => {
     const newCount = players.length + delta;
     if (newCount >= 2 && newCount <= 8) {
       if (delta > 0) {
-        addPlayer('');
+        addPlayer();
       } else if (delta < 0 && players.length > 2) {
         removePlayer(players[players.length - 1].id);
       }

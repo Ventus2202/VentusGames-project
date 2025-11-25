@@ -1,0 +1,91 @@
+/* Unique styles for Impostor Config */
+
+/* The main content background and container are now handled by LobbyCommon.css */
+/* max-width for the container is unique */
+.lobby-container {
+  max-width: 500px;
+  margin: 0 auto;
+  gap: 32px; /* Unique gap */
+}
+
+/* Header is mostly common, but specific text can be overridden if needed */
+.lobby-header p {
+  /* color: rgba(255, 255, 255, 0.6); */
+}
+
+/* Players Card is used for the config card, only overrides here */
+.players-card {
+  /* background: rgba(44, 57, 75, 0.95); */
+}
+
+
+.role-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.role-selector:last-of-type {
+  border-bottom: none;
+}
+
+.role-label {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: white;
+}
+
+.role-stepper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.role-stepper button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #F4C542; /* Yellow theme color */
+  font-size: 2.5em;
+  line-height: 1;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.role-stepper button:hover:not(:disabled) {
+    transform: scale(1.1);
+}
+
+.role-stepper button:disabled {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.role-stepper span {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  min-width: 30px;
+  text-align: center;
+}
+
+.role-summary {
+  margin-top: 16px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1em;
+}
+
+.button-container {
+    margin-top: 16px;
+}

@@ -1,0 +1,42 @@
+.rules-card-component {
+  --background: rgba(var(--ion-color-primary-rgb), 0.05);
+  border-radius: 16px;
+  margin: 20px 0;
+}
+
+.rules-card-component .rules-list-component {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: rules-counter;
+}
+
+.rules-card-component .rules-list-component li {
+  counter-increment: rules-counter;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.5; /* Ensure consistent line height */
+}
+
+.rules-card-component .rules-list-component li strong {
+  display: inline; /* Ensure it stays inline */
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap; /* Allow text to wrap naturally around strong */
+}
+
+.rules-card-component .rules-list-component li::before {
+  content: counter(rules-counter);
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-right: 12px;
+  flex-shrink: 0;
+}

@@ -2,16 +2,24 @@
   --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
 }
 
+/* Custom toolbar style */
+ion-toolbar {
+  --background: rgba(26, 35, 50, 0.95);
+  --color: white;
+  --border-color: rgba(244, 197, 66, 0.2);
+  backdrop-filter: blur(10px);
+}
+
 .games-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 20px;
+  gap: 32px;
+  padding: max(24px, env(safe-area-inset-top) + 4px) 20px max(24px, env(safe-area-inset-bottom) + 4px);
 }
 
 .games-header {
   text-align: center;
-  padding: 20px 0;
+  padding: 8px 0 16px;
 }
 
 .games-header h1 {
@@ -48,19 +56,49 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
+.game-card.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.game-card.disabled:hover {
+  transform: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
 /* Game Banner */
 .game-banner {
   position: relative;
   width: 100%;
-  height: 200px;
   overflow: hidden;
   background: linear-gradient(135deg, #2d3e50 0%, #1a2332 100%);
 }
 
+.players-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(244, 197, 66, 0.95);
+  color: #1a2332;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.players-badge ion-icon {
+  font-size: 18px;
+}
+
 .game-banner img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
   transition: transform 0.3s ease;
 }
 
@@ -101,7 +139,7 @@
 
 /* Game Info */
 .game-info {
-  padding: 20px;
+  padding: 24px;
 }
 
 .game-info h2 {
@@ -119,28 +157,26 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .games-grid {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 @media (max-width: 480px) {
   .games-container {
-    gap: 16px;
-    padding: 16px;
+    gap: 20px;
+    padding: max(20px, env(safe-area-inset-top) + 4px) 16px max(20px, env(safe-area-inset-bottom) + 4px);
+  }
+
+  .games-header {
+    padding: 4px 0 12px;
   }
 
   .games-header h1 {
     font-size: 24px;
   }
 
-  .game-banner {
-    height: 160px;
-  }
+
 
   .game-info {
-    padding: 16px;
+    padding: 20px;
   }
 
   .game-info h2 {

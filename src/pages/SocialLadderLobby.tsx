@@ -1,30 +1,32 @@
 import { IonContent, IonPage, IonButton, IonHeader, IonToolbar, IonTitle, IonList, IonItem, IonLabel, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/react';
 import { arrowBack } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
-import { useGame } from '../context/GameContext';
-import useSocialLadderQuestions from '../hooks/useSocialLadderQuestions';
+import { usePlayers } from '../hooks/usePlayers';
 import './SocialLadderLobby.css';
+import '../styles/LobbyCommon.css';
+
+import RulesCard from '../components/RulesCard';
 
 const SocialLadderLobby: React.FC = () => {
   const history = useHistory();
-  const { players, initializeGame } = useGame();
-  const { questions } = useSocialLadderQuestions();
+  const { players } = usePlayers();
   const validPlayers = players.filter(p => p.name.trim() !== '');
 
   const handleStartGame = () => {
-    if (questions.length > 0) {
-      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-      initializeGame(randomQuestion);
-      // Piccolo delay per permettere allo stato di sincronizzarsi
-      setTimeout(() => {
-        history.push('/social-ladder-game');
-      }, 50);
-    }
+    history.push('/social-ladder-game');
   };
 
   const handleBack = () => {
     history.push('/');
   };
+
+  const socialLadderRules = [
+    "Vi verrà posta una domanda",
+    "Ognuno posiziona se stesso nella classifica",
+    "Il Master crea la classifica ufficiale",
+    "Chi indovina la posizione guadagna Ventus Points",
+    "Il gioco continua con il prossimo Master"
+  ];
 
   return (
     <IonPage>
@@ -36,7 +38,7 @@ const SocialLadderLobby: React.FC = () => {
           <IonTitle>Social Ladder</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="social-ladder-lobby-content">
+      <IonContent className="lobby-content">
         <div className="lobby-container">
           {/* Titolo */}
           <div className="lobby-header">
@@ -66,20 +68,7 @@ const SocialLadderLobby: React.FC = () => {
           </IonCard>
 
           {/* Regole */}
-          <IonCard className="rules-card">
-            <IonCardHeader>
-              <IonCardTitle>Come funziona</IonCardTitle>
-            </IonCardHeader>
-            <IonCardContent>
-              <ol className="rules-list">
-                <li>Vi verrà posta una domanda</li>
-                <li>Ognuno posiziona se stesso nella classifica</li>
-                <li>Il Master crea la classifica ufficiale</li>
-                <li>Chi indovina la posizione guadagna Ventus Points</li>
-                <li>Il gioco continua con il prossimo Master</li>
-              </ol>
-            </IonCardContent>
-          </IonCard>
+          <RulesCard rules={socialLadderRules} />
 
           {/* Bottone start */}
           <div className="button-container">

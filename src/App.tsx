@@ -1,23 +1,33 @@
 import { Redirect, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import {
   IonApp,
-  IonIcon,
-  IonLabel,
   IonRouterOutlet,
+  IonSpinner,
+  setupIonicReact,
+  IonTabs,
   IonTabBar,
   IonTabButton,
-  IonTabs,
-  setupIonicReact
+  IonIcon,
+  IonLabel,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import { GameProvider } from './context/GameContext';
-import Home from './pages/Home';
-import GamesList from './pages/GamesList';
-import SocialLadderGame from './pages/SocialLadderGame';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { gameController, settings, people } from 'ionicons/icons';
+import { PlayerProvider } from './context/PlayerContext';
+import ErrorBoundary from './components/ErrorBoundary';
+
+// Lazy load page components
+const Home = lazy(() => import('./pages/Home'));
+const GamesList = lazy(() => import('./pages/GamesList'));
+const SettingsPage = lazy(() => import('./pages/SettingsPage'));
+const SocialLadderLobby = lazy(() => import('./pages/SocialLadderLobby'));
+const SocialLadderGame = lazy(() => import('./pages/SocialLadderGame'));
+const PsychologistLobby = lazy(() => import('./pages/PsychologistLobby'));
+const PsychologistGame = lazy(() => import('./pages/PsychologistGame'));
+const ImpostorLobby = lazy(() => import('./pages/ImpostorLobby'));
+const ImpostorConfig = lazy(() => import('./pages/ImpostorConfig'));
+const ImpostorGame = lazy(() => import('./pages/ImpostorGame'));
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -53,31 +63,54 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <GameProvider>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/games">
-            <GamesList />
-          </Route>
-          <Route exact path="/social-ladder-game">
-            <SocialLadderGame />
-          </Route>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </GameProvider>
+    <PlayerProvider>
+      <ErrorBoundary>
+        <IonReactRouter>
+          <Suspense fallback={<IonSpinner name="bubbles" />}>
+            <IonRouterOutlet>
+              {/* Routes that are not part of the main tabs */}
+              <Route exact path="/social-ladder-lobby" component={SocialLadderLobby} />
+              <Route exact path="/social-ladder-game" component={SocialLadderGame} />
+              <Route exact path="/psychologist-lobby" component={PsychologistLobby} />
+              <Route exact path="/psychologist-game" component={PsychologistGame} />
+              <Route exact path="/impostor-lobby" component={ImpostorLobby} />
+              <Route exact path="/impostor-config" component={ImpostorConfig} />
+              <Route exact path="/impostor-game" component={ImpostorGame} />
+              
+              {/* Main app with tabs */}
+              <Route path="/:tab(players|games|settings)" render={() => <Tabs />} />
+              <Route exact path="/" render={() => <Redirect to="/players" />} />
+            </IonRouterOutlet>
+          </Suspense>
+        </IonReactRouter>
+      </ErrorBoundary>
+    </PlayerProvider>
   </IonApp>
 );
 
+const Tabs: React.FC = () => (
+  <IonTabs>
+    <IonRouterOutlet>
+      <Route exact path="/players" component={Home} />
+      <Route exact path="/games" component={GamesList} />
+      <Route exact path="/settings" component={SettingsPage} />
+    </IonRouterOutlet>
+    <IonTabBar slot="bottom">
+      <IonTabButton tab="players" href="/players">
+        <IonIcon icon={people} />
+        <IonLabel>Giocatori</IonLabel>
+      </IonTabButton>
+      <IonTabButton tab="games" href="/games">
+        <IonIcon icon={gameController} />
+        <IonLabel>Giochi</IonLabel>
+      </IonTabButton>
+      <IonTabButton tab="settings" href="/settings">
+        <IonIcon icon={settings} />
+        <IonLabel>Impostazioni</IonLabel>
+      </IonTabButton>
+    </IonTabBar>
+  </IonTabs>
+);
+
 export default App;
+

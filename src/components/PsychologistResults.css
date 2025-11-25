@@ -1,0 +1,167 @@
+.psychologist-results-content {
+  --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: max(24px, env(safe-area-inset-top) + 4px) 20px max(24px, env(safe-area-inset-bottom) + 4px);
+}
+
+.results-header {
+  text-align: center;
+  padding: 24px;
+  border-radius: 16px;
+  border: 2px solid;
+}
+
+.results-header.correct {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+.results-header.wrong {
+  background: rgba(244, 130, 60, 0.1);
+  border-color: rgba(244, 130, 60, 0.5);
+}
+
+.results-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: white;
+}
+
+.result-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.answer-card,
+.guess-card {
+  --background: rgba(44, 57, 75, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.answer-card ion-card-content,
+.guess-card ion-card-content {
+  padding: 16px;
+}
+
+.answer-label,
+.guess-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(244, 197, 66, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.answer-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.guess-text {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.guess-text.correct-guess {
+  color: rgba(76, 175, 80, 0.9);
+  border: 2px solid rgba(76, 175, 80, 0.4);
+}
+
+.guess-text.wrong-guess {
+  color: rgba(244, 130, 60, 0.8);
+  border: 2px solid rgba(244, 130, 60, 0.3);
+}
+
+.round-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.info-box {
+  background: rgba(60, 76, 97, 0.6);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(244, 197, 66, 0.8);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.info-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.next-button {
+  --background: #F4C542;
+  --background-hover: #E6B83A;
+  --background-activated: #D4A932;
+  --color: #1a2332;
+  --border-radius: 12px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  height: 50px;
+}
+
+.end-button {
+  --background: rgba(76, 175, 80, 0.8);
+  --background-hover: rgba(76, 175, 80, 0.9);
+  --background-activated: rgba(76, 175, 80, 0.7);
+  --color: white;
+  --border-radius: 12px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  height: 50px;
+}
+
+@media (max-width: 480px) {
+  .results-container {
+    gap: 16px;
+    padding: max(20px, env(safe-area-inset-top) + 4px) 16px max(20px, env(safe-area-inset-bottom) + 4px);
+  }
+
+  .results-header h1 {
+    font-size: 28px;
+  }
+
+  .answer-text,
+  .guess-text {
+    font-size: 18px;
+  }
+}
