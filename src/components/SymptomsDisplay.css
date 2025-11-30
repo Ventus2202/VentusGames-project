@@ -1,0 +1,165 @@
+.symptoms-display-content {
+  --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+  --padding-top: max(20px, env(safe-area-inset-top));
+  --padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+.symptoms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: max(24px, env(safe-area-inset-top) + 4px) 20px max(24px, env(safe-area-inset-bottom) + 4px);
+  height: 100%;
+}
+
+.psychologist-away-notice {
+  text-align: center;
+  padding: 16px;
+  background: rgba(244, 130, 60, 0.1);
+  border: 2px solid rgba(244, 130, 60, 0.5);
+  border-radius: 12px;
+}
+
+.psychologist-away-notice h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.psychologist-away-notice p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin: 0;
+}
+
+.symptom-card {
+  background: rgba(44, 57, 75, 0.95);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(244, 197, 66, 0.3);
+}
+
+.symptom-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(244, 197, 66, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.symptom-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.symptom-instruction {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-style: italic;
+  margin: 0;
+}
+
+.instructions {
+  flex: 1;
+}
+
+.instruction-box {
+  background: rgba(60, 76, 97, 0.6);
+  border-radius: 12px;
+  padding: 16px;
+  border-left: 4px solid rgba(244, 197, 66, 0.6);
+}
+
+.instruction-box h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 12px 0;
+}
+
+.instruction-box ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.instruction-box li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.instruction-box li::before {
+  content: "✓ ";
+  color: rgba(244, 197, 66, 0.8);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.ready-section {
+  padding-top: 16px;
+}
+
+.ready-button {
+  --background: #F4C542;
+  --background-hover: #E6B83A;
+  --background-activated: #D4A932;
+  --color: #1a2332;
+  --border-radius: 12px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  height: 56px;
+}
+
+.readiness-message {
+  text-align: center;
+  padding: 16px;
+  background: rgba(76, 175, 80, 0.15);
+  border-radius: 12px;
+  border: 2px solid rgba(76, 175, 80, 0.5);
+}
+
+.success-text {
+  color: rgba(76, 175, 80, 0.9);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .symptoms-container {
+    gap: 20px;
+    padding: max(20px, env(safe-area-inset-top) + 4px) 16px max(20px, env(safe-area-inset-bottom) + 4px);
+  }
+
+  .symptom-text {
+    font-size: 24px;
+    padding: 16px;
+  }
+
+  .instruction-box {
+    padding: 12px;
+  }
+
+  .instruction-box h3 {
+    font-size: 14px;
+  }
+
+  .instruction-box li {
+    font-size: 13px;
+  }
+}

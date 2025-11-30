@@ -1,0 +1,70 @@
+.role-reveal-content {
+  --background: #1e1e1e;
+  color: white;
+}
+
+.role-reveal-content .reveal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 24px;
+  gap: 20px;
+}
+
+.role-reveal-content .reveal-container h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.role-reveal-content .reveal-container p {
+  font-size: 1.2em;
+  color: var(--ion-color-medium-tint);
+}
+
+.role-reveal-content .role-title {
+  padding: 8px 24px;
+  border-radius: 12px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.role-reveal-content .role-civilian { background-color: var(--ion-color-primary); }
+.role-reveal-content .role-spy { background-color: var(--ion-color-warning); }
+.role-reveal-content .role-impostor { background-color: var(--ion-color-danger); }
+
+.role-reveal-content .word-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.role-reveal-content .word-label {
+  font-size: 1em;
+  color: var(--ion-color-medium-tint);
+}
+
+.role-reveal-content .word-text {
+  font-size: 2.2em;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.role-reveal-content .impostor-instruction {
+  font-size: 1.5em;
+  font-style: italic;
+  color: var(--ion-color-light);
+}
+
+

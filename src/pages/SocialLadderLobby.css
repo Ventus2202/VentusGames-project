@@ -1,0 +1,85 @@
+/* Unique styles for Social Ladder Lobby */
+
+.social-ladder-lobby-content {
+  /* No special background, LobbyCommon.css handles it */
+  /* padding overrides if needed */
+  --padding-top: max(20px, env(safe-area-inset-top)); /* Slightly different from default */
+  --padding-bottom: max(20px, env(safe-area-inset-bottom)); /* Slightly different from default */
+}
+
+.lobby-container {
+  gap: 28px; /* Override default gap from LobbyCommon.css if needed */
+  padding: max(28px, env(safe-area-inset-top) + 8px) 20px max(28px, env(safe-area-inset-bottom) + 8px); /* Different padding */
+}
+
+/* Players Card - specific header/title styling */
+.players-card ion-card-header {
+  --background: rgba(60, 76, 97, 0.8);
+  border-radius: 16px 16px 0 0;
+}
+
+.players-card ion-card-title {
+  color: white;
+  font-weight: 700;
+}
+
+.player-badge {
+  width: 36px; /* Override default */
+  height: 36px; /* Override default */
+  font-size: 16px; /* Override default */
+}
+
+.player-name {
+  font-size: 18px; /* Override default */
+}
+
+/* Rules Card - specific header/title styling */
+.rules-card ion-card-header {
+  --background: rgba(60, 76, 97, 0.8);
+  border-radius: 16px 16px 0 0;
+}
+
+.rules-card ion-card-title {
+  color: white;
+  font-weight: 700;
+}
+
+.rules-list {
+  list-style: decimal; /* Override default */
+  padding-left: 20px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+}
+
+.rules-list li {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+/* Button Container */
+.button-container {
+  gap: 12px;
+  padding: 0 0 8px;
+}
+
+.warning-text {
+  color: rgba(255, 100, 100, 1); /* Override default */
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .lobby-container {
+    gap: 20px;
+    padding: max(24px, env(safe-area-inset-top) + 4px) 16px max(24px, env(safe-area-inset-bottom) + 4px); /* Different padding */
+  }
+
+  .lobby-header h1 {
+    font-size: 24px;
+  }
+
+  .player-name {
+    font-size: 16px;
+  }
+}

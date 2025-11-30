@@ -1,0 +1,174 @@
+.settings-content {
+  --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+}
+
+.settings-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.settings-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.settings-header p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Settings Cards */
+.settings-card {
+  --background: rgba(44, 57, 75, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.settings-card ion-card-header {
+  --background: rgba(60, 76, 97, 0.8);
+  border-radius: 16px 16px 0 0;
+}
+
+.settings-card ion-card-title {
+  color: white;
+  font-weight: 700;
+}
+
+.settings-card ion-list {
+  --background: transparent;
+  --border-color: transparent;
+}
+
+.settings-card ion-item {
+  --background: transparent;
+  --border-color: rgba(244, 197, 66, 0.1);
+}
+
+.settings-card ion-label {
+  color: white;
+}
+
+/* Setting Label */
+.setting-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label-name {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.label-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+}
+
+.setting-value {
+  color: #F4C542;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.setting-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  margin: 12px 0 0 0;
+}
+
+/* Info Rows */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(244, 197, 66, 0.1);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.info-value {
+  color: #F4C542;
+  font-weight: 700;
+}
+
+/* Data Section */
+.data-description {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.reset-button {
+  --background: rgba(220, 38, 38, 0.9);
+  --background-hover: rgba(200, 30, 30, 0.9);
+  --color: white;
+  --border-radius: 12px;
+  height: 48px;
+}
+
+/* Confirmation Section */
+.confirmation-section {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.confirmation-text {
+  color: rgba(255, 100, 100, 1);
+  font-size: 13px;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.confirmation-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.confirmation-buttons ion-button {
+  height: 44px;
+}
+
+/* Credits Card */
+.credits-card {
+  margin-bottom: 20px;
+}
+
+.credits-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.credits-text:last-of-type {
+  margin-bottom: 0;
+}
+
+.credits-tech {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  margin: 12px 0 0 0;
+}

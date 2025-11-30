@@ -1,0 +1,21 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+
+/* Global Safe Area Support for Notch/Status Bar */
+ion-toolbar {
+  margin-top: 32px;
+  padding-top: 0 !important;
+}
+
+/* Ensure content doesn't overlap with status bar */
+ion-content {
+  --padding-top: env(safe-area-inset-top);
+  --padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Fix for pages without header */
+.turn-header,
+.ready-header,
+[class*="-header"] {
+  padding-top: max(16px, env(safe-area-inset-top) + 4px) !important;
+}

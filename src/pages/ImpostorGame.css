@@ -1,0 +1,57 @@
+/* ImpostorGame.css */
+
+.impostor-game-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--ion-color-primary-contrast);
+}
+
+.impostor-game-loading ion-spinner {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.impostor-game-loading p {
+    font-size: 1.2em;
+}
+
+.ion-text-center {
+    text-align: center;
+}
+
+.game-over-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.game-over-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--ion-color-primary);
+}
+
+.game-over-container p {
+    font-size: 1.2em;
+    color: var(--ion-color-medium);
+}
+
+.winner-icon {
+    font-size: 8em;
+    margin-bottom: 20px;
+}
+
+.winner-icon.civilians {
+    color: var(--ion-color-success);
+}
+
+.winner-icon.impostor {
+    color: var(--ion-color-danger);
+}

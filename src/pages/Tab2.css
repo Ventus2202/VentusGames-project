@@ -1,0 +1,145 @@
+.stats-content {
+  --background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+}
+
+.stats-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats-header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.stats-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.stats-header p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Stat Cards */
+.stats-card,
+.top-player-card,
+.ranking-card,
+.empty-card {
+  --background: rgba(44, 57, 75, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.stats-card ion-card-header,
+.top-player-card ion-card-header,
+.ranking-card ion-card-header {
+  --background: rgba(60, 76, 97, 0.8);
+  border-radius: 16px 16px 0 0;
+}
+
+.stats-card ion-card-title,
+.top-player-card ion-card-title,
+.ranking-card ion-card-title {
+  color: white;
+  font-weight: 700;
+}
+
+/* Stat Rows */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(244, 197, 66, 0.1);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.stat-value {
+  color: #F4C542;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Top Player */
+.top-player-info {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.top-player-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.top-player-score {
+  font-size: 24px;
+  font-weight: 800;
+  color: #F4C542;
+}
+
+/* Ranking List */
+.player-ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(60, 76, 97, 0.6);
+  border-radius: 8px;
+  border-left: 3px solid rgba(244, 197, 66, 0.3);
+}
+
+.rank-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #F4C542 0%, #E6B83A 100%);
+  border-radius: 6px;
+  font-weight: 700;
+  color: #1a2332;
+  font-size: 14px;
+}
+
+.rank-name {
+  flex: 1;
+  color: white;
+  font-weight: 600;
+}
+
+.rank-score {
+  color: #F4C542;
+  font-weight: 700;
+}
+
+/* Empty State */
+.empty-message {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 32px 16px;
+  line-height: 1.6;
+  margin: 0;
+}
