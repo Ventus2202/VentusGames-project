@@ -55,3 +55,33 @@
 .winner-icon.impostor {
     color: var(--ion-color-danger);
 }
+.elimination-card {
+  margin-top: 20px;
+}
+
+.role-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.role-icon.impostor {
+  color: var(--ion-color-danger);
+}
+
+.role-icon.civilian {
+  color: var(--ion-color-success);
+}
+
+.elimination-reveal-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.impostor-text {
+    color: var(--ion-color-success);
+}
+
+.civilian-text {
+    color: var(--ion-color-danger);
+}

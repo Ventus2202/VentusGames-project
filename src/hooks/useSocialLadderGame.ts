@@ -99,7 +99,7 @@ export const useSocialLadderGame = (players: Player[]) => {
     const masterId = currentRound.masterId;
     
     const nonMasterPlayers = state.players.filter(p => p.id !== masterId);
-    let allPlayersCorrect = true;
+    let correctMasterGuesses = 0;
     
     nonMasterPlayers.forEach(player => {
       const playerPosition = currentRound.playerSelfPositions[player.id];
@@ -108,18 +108,15 @@ export const useSocialLadderGame = (players: Player[]) => {
       if (playerPosition === masterPosition) {
         currentRound.roundScores[player.id] = 1;
         state.totalScores[player.id] = (state.totalScores[player.id] || 0) + 1;
+        correctMasterGuesses++;
       } else {
         currentRound.roundScores[player.id] = 0;
-        allPlayersCorrect = false;
       }
     });
 
-    currentRound.roundScores[masterId] = 0;
-
-    if (allPlayersCorrect && nonMasterPlayers.length > 0) {
-      currentRound.roundScores[masterId] = 2;
-      state.totalScores[masterId] = (state.totalScores[masterId] || 0) + 2;
-    }
+    const masterScore = correctMasterGuesses * 0.5;
+    currentRound.roundScores[masterId] = masterScore;
+    state.totalScores[masterId] = (state.totalScores[masterId] || 0) + masterScore;
 
     currentRound.completed = true;
     state.gameState = 'results';

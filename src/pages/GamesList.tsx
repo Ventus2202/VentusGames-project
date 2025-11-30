@@ -5,6 +5,7 @@ import { usePlayers } from '../hooks/usePlayers';
 import socialLadderBanner from '../assets/game_banners/social_ladder.png';
 import psychologistBanner from '../assets/game_banners/psychologist.png';
 import impostorBanner from '../assets/game_banners/impostor.png';
+import midnightMysteryBanner from '../assets/game_banners/midnight_mystery.png';
 import './GamesList.css';
 
 interface Game {
@@ -48,6 +49,15 @@ const GamesList: React.FC = () => {
       banner: impostorBanner,
       route: '/impostor-lobby',
       minPlayers: 4,
+      maxPlayers: 20,
+    },
+    {
+      id: 'midnight_mystery',
+      name: 'Midnight Mystery',
+      description: 'Risolvi enigmi intricati con solo "Sì" o "No".',
+      banner: midnightMysteryBanner,
+      route: '/midnight-mystery-lobby',
+      minPlayers: 2,
       maxPlayers: 20,
     },
   ];

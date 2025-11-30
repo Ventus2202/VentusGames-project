@@ -1,7 +1,7 @@
 import { IonContent, IonPage, IonSpinner, IonHeader, IonToolbar, IonTitle, IonList, IonItem, IonLabel, IonButton, IonIcon, useIonAlert, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { personRemove, checkmarkCircle, closeCircle } from 'ionicons/icons';
+import { personRemove, checkmarkCircle, closeCircle, skull, person } from 'ionicons/icons';
 import { usePlayers } from '../hooks/usePlayers';
 import useImpostorWords from '../hooks/useImpostorWords';
 import { useImpostorGame } from '../hooks/useImpostorGame';
@@ -143,17 +143,35 @@ const ImpostorGame: React.FC = () => {
   // Phase 3: Elimination Result
   if (impostorState.gameState === 'elimination_result') {
     const eliminatedPlayer = impostorState.players.find(p => p.id === impostorState.eliminatedPlayerId);
+    const wasImpostor = eliminatedPlayer?.role === 'Impostor';
+
     return (
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Risultato</IonTitle>
+            <IonTitle>Risultato dell'eliminazione</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent className="ion-padding ion-text-center">
-            <h1>{eliminatedPlayer?.name} è stato eliminato.</h1>
-            <p>Il suo ruolo era: <strong>{eliminatedPlayer?.role}</strong></p>
-            <IonButton onClick={nextRound}>Prossimo Turno</IonButton>
+          <IonCard className="elimination-card">
+            <IonCardHeader>
+              <IonCardTitle>{eliminatedPlayer?.name} è stato eliminato</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <IonIcon icon={wasImpostor ? skull : person} className={`role-icon ${wasImpostor ? 'impostor' : 'civilian'}`} />
+              <p>Il suo ruolo era: <strong>{eliminatedPlayer?.role}</strong></p>
+              
+              {wasImpostor ? (
+                <p className="elimination-reveal-text impostor-text">Avete scoperto un impostore!</p>
+              ) : (
+                <p className="elimination-reveal-text civilian-text">Avete eliminato un civile innocente...</p>
+              )}
+
+              <IonButton onClick={nextRound} className="ion-margin-top">
+                Prossimo Turno
+              </IonButton>
+            </IonCardContent>
+          </IonCard>
         </IonContent>
       </IonPage>
     );

@@ -1,0 +1,108 @@
+.mystery-game-content {
+  --background: #1a2332;
+  --padding: 16px;
+}
+
+.story-selection-container, .winner-selection-container, .mystery-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  gap: 24px;
+}
+
+.master-instruction {
+  color: var(--ion-color-medium);
+  max-width: 400px;
+  margin-bottom: 24px;
+}
+
+/* Flip Card */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border-radius: 16px;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.flip-card-front {
+  background: linear-gradient(135deg, #2d3e50 0%, #3a506b 100%);
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, #F4C542 0%, #E6B83A 100%);
+  color: #1a2332;
+  transform: rotateY(180deg);
+}
+
+.flip-card-front h2 {
+  font-weight: bold;
+}
+
+.flip-card-back h3 {
+  font-weight: bold;
+}
+
+.master-reminder {
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0.8;
+  font-size: 0.9em;
+}
+
+.winner-selection-container ion-list {
+  width: 100%;
+  max-width: 400px;
+}
+
+.scores-card {
+  width: 100%;
+  max-width: 400px;
+  --background: rgba(0, 0, 0, 0.2);
+}
+
+.scores-card h3 {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.player-score {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--ion-color-primary);
+}

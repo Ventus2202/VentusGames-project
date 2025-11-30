@@ -27,6 +27,8 @@ const PsychologistGame = lazy(() => import('./pages/PsychologistGame'));
 const ImpostorLobby = lazy(() => import('./pages/ImpostorLobby'));
 const ImpostorConfig = lazy(() => import('./pages/ImpostorConfig'));
 const ImpostorGame = lazy(() => import('./pages/ImpostorGame'));
+const MidnightMysteryLobby = lazy(() => import('./pages/MidnightMysteryLobby'));
+const MidnightMysteryGame = lazy(() => import('./pages/MidnightMysteryGame'));
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -76,6 +78,8 @@ const App: React.FC = () => (
               <Route exact path="/impostor-lobby" component={ImpostorLobby} />
               <Route exact path="/impostor-config" component={ImpostorConfig} />
               <Route exact path="/impostor-game" component={ImpostorGame} />
+              <Route exact path="/midnight-mystery-lobby" component={MidnightMysteryLobby} />
+              <Route exact path="/midnight-mystery-game" component={MidnightMysteryGame} />
               
               {/* Main app with tabs */}
               <Route path="/:tab(players|games|settings)" render={() => <Tabs />} />
