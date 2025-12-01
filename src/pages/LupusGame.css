@@ -1,0 +1,142 @@
+.lupus-game-content {
+    --background: #121212;
+    color: #ffffff;
+}
+
+.narrator-header {
+    padding: 20px;
+    text-align: center;
+}
+
+.narrator-header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.narrator-header p {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+}
+
+.player-list {
+    padding: 10px;
+}
+
+.player-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #333;
+}
+
+.player-card.dead {
+    opacity: 0.5;
+    border-color: #552222;
+    background-color: #2a1a1a;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.role-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background-color: #444;
+}
+
+.role-lupo { background-color: #ff4444; color: white; }
+.role-veggente { background-color: #aa44ff; color: white; }
+.role-guardia { background-color: #4444ff; color: white; }
+.role-civile { background-color: #888; color: white; }
+.role-strega { background-color: #009688; color: white; }
+.role-indemoniato { background-color: #d32f2f; color: white; }
+.role-giullare { background-color: #ffc107; color: black; }
+.role-cupido { background-color: #e91e63; color: white; }
+.role-gufo { background-color: #607d8b; color: white; }
+
+
+.player-status {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.status-alive {
+    color: #4caf50;
+}
+
+.status-dead {
+    color: #f44336;
+}
+
+.kill-button {
+    --color: #ff4444;
+}
+
+.revive-button {
+    --color: #44ff44;
+}
+
+.game-over-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.winner-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.winner-wolves {
+    color: #ff4444;
+}
+
+.winner-civilians {
+    color: #4caf50;
+}
+
+.winner-giullare {
+    color: #ffc107;
+}
+
+.sub-winner {
+    font-size: 1.2rem;
+    color: #d32f2f;
+    margin-top: 10px;
+}
+
+.status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.death-cause {
+    font-size: 0.8rem;
+    color: #ff6666;
+    font-style: italic;
+}
